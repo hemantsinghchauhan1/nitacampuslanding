@@ -36,22 +36,24 @@ setInterval(updateCountdown, 1000);
 
 const audio = document.getElementById('bg-audio');
 const audioToggle = document.getElementById('audio-toggle');
+const volumeSlider = document.getElementById('volume-slider');
 
 if (audio) {
+  // Start muted for autoplay policy; play silently so audio is primed.
   audio.volume = 0.25;
-  // Keep audio muted for autoplay compliance; play muted so it's ready.
   audio.muted = true;
   audio.play().catch(() => {});
 
-  function setIcon(isPlaying, isMuted) {
+  function setIcon() {
     if (!audioToggle) return;
-    if (isMuted) audioToggle.textContent = '🔇';
-    else audioToggle.textContent = isPlaying ? '⏸' : '🔊';
-    audioToggle.setAttribute('aria-pressed', String(!isMuted && !audio.paused));
+    if (audio.muted) audioToggle.textContent = '🔇';
+    else audioToggle.textContent = audio.paused ? '🔊' : '⏸';
+    audioToggle.setAttribute('aria-pressed', String(!audio.muted && !audio.paused));
   }
 
+  // Toggle play / pause / mute
   if (audioToggle) {
-    setIcon(!audio.paused, audio.muted);
+    setIcon();
     audioToggle.addEventListener('click', () => {
       if (audio.muted) {
         audio.muted = false;
@@ -61,7 +63,27 @@ if (audio) {
       } else {
         audio.pause();
       }
-      setIcon(!audio.paused, audio.muted);
+      setIcon();
     });
   }
+
+  // Volume slider: unmute and set volume when adjusted
+  if (volumeSlider) {
+    volumeSlider.value = String(Math.round(audio.volume * 100));
+    volumeSlider.addEventListener('input', (e) => {
+      const v = Number(e.target.value) / 100;
+      audio.volume = v;
+      if (audio.muted && v > 0) audio.muted = false;
+      if (!audio.muted && v === 0) audio.muted = true;
+      setIcon();
+    });
+  }
+
+  // Keep icon state in sync with audio events
+  audio.addEventListener('play', setIcon);
+  audio.addEventListener('pause', setIcon);
+  audio.addEventListener('volumechange', () => {
+    if (volumeSlider) volumeSlider.value = String(Math.round(audio.volume * 100));
+    setIcon();
+  });
 }
