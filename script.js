@@ -83,8 +83,8 @@
   tick()
   setInterval(tick, 1000)
 
-  // 3D TILT EFFECT ON CARDS
-  const cards = document.querySelectorAll('.card')
+  // 3D TILT EFFECT ON CARDS (.card-3d)
+  const cards = document.querySelectorAll('.card-3d, .card')
   cards.forEach((card) => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect()
@@ -96,7 +96,7 @@
       const rotateX = (centerY - y) / 4
       const rotateY = (x - centerX) / 4
 
-      card.style.transform = `translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`
+      card.style.transform = `translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
     })
 
     card.addEventListener('mouseleave', () => {
@@ -104,7 +104,7 @@
     })
   })
 
-  // AUDIO AUTOMATIC PLAYBACK ON USER CLICK
+  // AUDIO AUTOMATIC PLAYBACK ON ANY USER INTERACTION / CLICK
   const audio = document.getElementById('bg-audio')
   const audioFab = document.getElementById('audio-fab')
   const audioBtn = document.getElementById('audio-toggle-btn')
@@ -114,12 +114,14 @@
 
   function playAudio() {
     if (!audio) return
-    audio.volume = 0.3
+    audio.volume = 0.35
     audio.play().then(() => {
       hasStartedPlaying = true
       if (audioFab) audioFab.classList.add('playing')
       if (audioTooltip) audioTooltip.textContent = 'Music playing 🎵'
-    }).catch(() => {})
+    }).catch((err) => {
+      console.log('Audio autoplay prevented by browser until click:', err)
+    })
   }
 
   function pauseAudio() {
@@ -139,14 +141,22 @@
     }
   }
 
+  if (audioFab) {
+    audioFab.addEventListener('click', toggleAudio)
+  }
   if (audioBtn) {
     audioBtn.addEventListener('click', toggleAudio)
   }
 
-  // Play audio whenever someone clicks anywhere on the page if not already playing
-  document.addEventListener('click', () => {
+  // Automatic audio play handler triggered on first user click/touch anywhere on the window
+  function handleUserGesture() {
     if (audio && audio.paused && !hasStartedPlaying) {
       playAudio()
     }
+  }
+
+  ['click', 'touchstart', 'mousedown', 'pointerdown', 'keydown'].forEach((eventType) => {
+    window.addEventListener(eventType, handleUserGesture, { passive: true })
+    document.addEventListener(eventType, handleUserGesture, { passive: true })
   })
 })()
