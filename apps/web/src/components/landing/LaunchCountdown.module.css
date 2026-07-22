@@ -4,6 +4,7 @@
   background: linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 100%);
   padding: 64px 20px;
   box-sizing: border-box;
+  perspective: 1200px;
 }
 
 .container {
@@ -13,6 +14,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  transform-style: preserve-3d;
 }
 
 .topLabel {
@@ -34,19 +36,23 @@
 
 .liveHighlight {
   color: #1A56DB;
+  text-shadow: 0 2px 10px rgba(26, 86, 219, 0.2);
 }
 
 .countdownWrapper {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 12px;
+  gap: 16px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
 .cardContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transform-style: preserve-3d;
 }
 
 .card {
@@ -55,14 +61,20 @@
   aspect-ratio: 1 / 0.9;
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+  box-shadow: 
+    0 12px 28px -4px rgba(15, 23, 42, 0.12),
+    0 4px 8px -2px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -3px 0 rgba(226, 232, 240, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  perspective: 400px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  perspective: 600px;
+  transform-style: preserve-3d;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .card::before {
@@ -72,8 +84,8 @@
   left: 0;
   right: 0;
   height: 50%;
-  background: rgba(248, 250, 252, 0.6);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.4);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.7) 100%);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
   z-index: 1;
   pointer-events: none;
 }
@@ -87,8 +99,18 @@
   height: 3px;
   background-color: #1A56DB;
   opacity: 0;
-  transition: opacity 0.2s ease;
-  z-index: 3;
+  box-shadow: 0 0 12px #1A56DB;
+  transition: opacity 0.25s ease;
+  z-index: 4;
+}
+
+.card:hover {
+  transform: translateY(-8px) rotateX(10deg) rotateY(-4deg) scale(1.04);
+  box-shadow: 
+    0 22px 36px -6px rgba(26, 86, 219, 0.18),
+    0 8px 16px -4px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -3px 0 #1A56DB;
 }
 
 .card:hover::after {
@@ -105,21 +127,28 @@
   display: inline-block;
   transform-origin: center center;
   backface-visibility: hidden;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
-@keyframes flip {
+@keyframes flip3d {
   0% {
-    transform: rotateX(-20deg);
-    opacity: 0.8;
+    transform: rotateX(-70deg) scale(0.9);
+    opacity: 0.5;
+    filter: blur(1px);
+  }
+  50% {
+    transform: rotateX(-20deg) scale(1.05);
+    opacity: 0.95;
   }
   100% {
-    transform: rotateX(0deg);
+    transform: rotateX(0deg) scale(1);
     opacity: 1;
+    filter: blur(0);
   }
 }
 
 .flip {
-  animation: flip 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  animation: flip3d 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
 }
 
 .separator {
@@ -133,21 +162,23 @@
   padding-bottom: 24px;
   box-sizing: border-box;
   user-select: none;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .label {
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: #94A3B8;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .progressSection {
   width: 100%;
   max-width: 340px;
-  margin: 32px auto 0 auto;
+  margin: 36px auto 0 auto;
 }
 
 .progressLabels {
@@ -162,16 +193,18 @@
 
 .progressTrack {
   width: 100%;
-  height: 4px;
-  border-radius: 2px;
+  height: 6px;
+  border-radius: 3px;
   background: #E2E8F0;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
-  background: #1A56DB;
-  border-radius: 2px;
+  background: linear-gradient(90deg, #1A56DB 0%, #3B82F6 100%);
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(26, 86, 219, 0.4);
   transition: width 0.8s ease;
 }
 
@@ -179,11 +212,12 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 24px;
-  padding: 8px 16px;
+  margin-top: 28px;
+  padding: 8px 18px;
   border-radius: 9999px;
   background: #EFF6FF;
   border: 1px solid #BFDBFE;
+  box-shadow: 0 4px 12px rgba(26, 86, 219, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .pulsingDot {
@@ -191,6 +225,7 @@
   height: 7px;
   border-radius: 50%;
   background-color: #1A56DB;
+  box-shadow: 0 0 8px #1A56DB;
   animation: pulse 1.8s ease-in-out infinite;
   flex-shrink: 0;
 }
@@ -198,9 +233,11 @@
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
+    transform: scale(1);
   }
   50% {
     opacity: 0.4;
+    transform: scale(0.85);
   }
 }
 
@@ -208,4 +245,90 @@
   font-size: 12px;
   font-weight: 500;
   color: #1A56DB;
+}
+
+/* FLOATING 3D AUDIO FAB */
+.audioFab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.audioBtn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #1A56DB 0%, #2563EB 100%);
+  color: #FFFFFF;
+  box-shadow: 
+    0 8px 24px rgba(26, 86, 219, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.audioFab:hover .audioBtn {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 
+    0 12px 30px rgba(26, 86, 219, 0.5),
+    0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.musicIcon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.soundWave {
+  display: none;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+}
+
+.soundWave span {
+  width: 3px;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  animation: wave 1s ease-in-out infinite alternate;
+}
+
+.soundWave span:nth-child(1) { height: 60%; animation-delay: 0s; }
+.soundWave span:nth-child(2) { height: 100%; animation-delay: 0.2s; }
+.soundWave span:nth-child(3) { height: 40%; animation-delay: 0.4s; }
+
+@keyframes wave {
+  0% { transform: scaleY(0.3); }
+  100% { transform: scaleY(1); }
+}
+
+.playing .musicIcon {
+  display: none;
+}
+
+.playing .soundWave {
+  display: flex;
+}
+
+.audioTooltip {
+  background: rgba(15, 23, 42, 0.9);
+  color: #FFFFFF;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  pointer-events: none;
+  white-space: nowrap;
 }

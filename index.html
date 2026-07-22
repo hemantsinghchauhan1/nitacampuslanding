@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NITACAMPUS - Live Launch Countdown</title>
+    <title>NITACAMPUS - 3D Live Launch Countdown</title>
     <meta
       name="description"
-      content="Official 21-day live launch countdown for NITACAMPUS - NIT Agartala Campus Super App."
+      content="Official 21-day live 3D launch countdown for NITACAMPUS - NIT Agartala Campus Super App."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!-- BACKGROUND AUDIO -->
+    <audio id="bg-audio" loop preload="auto">
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+    </audio>
+
     <!-- HERO SECTION -->
     <section class="hero-section">
       <div class="hero-content">
@@ -31,8 +36,8 @@
       </div>
     </section>
 
-    <!-- LAUNCH COUNTDOWN SECTION -->
-    <section class="countdown-section">
+    <!-- 3D LAUNCH COUNTDOWN SECTION -->
+    <section class="countdown-section" id="countdown-3d-section">
       <div class="countdown-container">
         <p class="top-label">NITACAMPUS</p>
         <h2 class="headline">
@@ -42,8 +47,10 @@
         <div class="countdown-wrapper">
           <!-- DAYS CARD -->
           <div class="card-container">
-            <div class="card">
-              <span id="days-digit" class="digit">00</span>
+            <div class="card 3d-card" data-tilt>
+              <div class="card-inner">
+                <span id="days-digit" class="digit">00</span>
+              </div>
             </div>
             <span class="card-label">Days</span>
           </div>
@@ -52,8 +59,10 @@
 
           <!-- HOURS CARD -->
           <div class="card-container">
-            <div class="card">
-              <span id="hours-digit" class="digit">00</span>
+            <div class="card 3d-card" data-tilt>
+              <div class="card-inner">
+                <span id="hours-digit" class="digit">00</span>
+              </div>
             </div>
             <span class="card-label">Hours</span>
           </div>
@@ -62,8 +71,10 @@
 
           <!-- MINS CARD -->
           <div class="card-container">
-            <div class="card">
-              <span id="mins-digit" class="digit">00</span>
+            <div class="card 3d-card" data-tilt>
+              <div class="card-inner">
+                <span id="mins-digit" class="digit">00</span>
+              </div>
             </div>
             <span class="card-label">Mins</span>
           </div>
@@ -72,8 +83,10 @@
 
           <!-- SECS CARD -->
           <div class="card-container">
-            <div class="card">
-              <span id="secs-digit" class="digit">00</span>
+            <div class="card 3d-card" data-tilt>
+              <div class="card-inner">
+                <span id="secs-digit" class="digit">00</span>
+              </div>
             </div>
             <span class="card-label">Secs</span>
           </div>
@@ -109,6 +122,17 @@
         </p>
       </div>
     </section>
+
+    <!-- FLOATING 3D AUDIO CONTROL BUTTON -->
+    <div class="audio-fab" id="audio-fab" title="Click anywhere or click here to play audio">
+      <button id="audio-toggle-btn" class="audio-btn" aria-label="Toggle Audio">
+        <span class="music-icon" id="music-icon">🎵</span>
+        <div class="sound-wave" id="sound-wave">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
+      <span class="audio-tooltip" id="audio-tooltip">Click to play sound</span>
+    </div>
 
     <script src="script.js"></script>
   </body>

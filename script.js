@@ -82,4 +82,71 @@
 
   tick()
   setInterval(tick, 1000)
+
+  // 3D TILT EFFECT ON CARDS
+  const cards = document.querySelectorAll('.card')
+  cards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
+
+      const rotateX = (centerY - y) / 4
+      const rotateY = (x - centerX) / 4
+
+      card.style.transform = `translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`
+    })
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg) scale(1)'
+    })
+  })
+
+  // AUDIO AUTOMATIC PLAYBACK ON USER CLICK
+  const audio = document.getElementById('bg-audio')
+  const audioFab = document.getElementById('audio-fab')
+  const audioBtn = document.getElementById('audio-toggle-btn')
+  const audioTooltip = document.getElementById('audio-tooltip')
+
+  let hasStartedPlaying = false
+
+  function playAudio() {
+    if (!audio) return
+    audio.volume = 0.3
+    audio.play().then(() => {
+      hasStartedPlaying = true
+      if (audioFab) audioFab.classList.add('playing')
+      if (audioTooltip) audioTooltip.textContent = 'Music playing 🎵'
+    }).catch(() => {})
+  }
+
+  function pauseAudio() {
+    if (!audio) return
+    audio.pause()
+    if (audioFab) audioFab.classList.remove('playing')
+    if (audioTooltip) audioTooltip.textContent = 'Music paused'
+  }
+
+  function toggleAudio(e) {
+    if (e) e.stopPropagation()
+    if (!audio) return
+    if (audio.paused) {
+      playAudio()
+    } else {
+      pauseAudio()
+    }
+  }
+
+  if (audioBtn) {
+    audioBtn.addEventListener('click', toggleAudio)
+  }
+
+  // Play audio whenever someone clicks anywhere on the page if not already playing
+  document.addEventListener('click', () => {
+    if (audio && audio.paused && !hasStartedPlaying) {
+      playAudio()
+    }
+  })
 })()
