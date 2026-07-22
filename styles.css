@@ -1,7 +1,7 @@
 :root {
   --bg-dark: #070B14;
-  --bg-card: rgba(13, 21, 38, 0.75);
-  --card-border: rgba(255, 255, 255, 0.12);
+  --bg-card: rgba(13, 21, 38, 0.78);
+  --card-border: rgba(255, 255, 255, 0.14);
   --primary-blue: #1A56DB;
   --cyan-accent: #38BDF8;
   --purple-glow: #7C3AED;
@@ -26,7 +26,28 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* 3D BACKGROUND GRID & GLOW ORBS */
+/* FULLSCREEN CAMPUS BACKGROUND IMAGE & OVERLAYS */
+.hero-bg-image {
+  position: fixed;
+  inset: 0;
+  background-image: url('assets/bg.jpg'), url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  filter: blur(2px) brightness(0.6);
+  transform: scale(1.04);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(7, 11, 20, 0.65) 0%, rgba(7, 11, 20, 0.88) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .bg-grid-overlay {
   position: fixed;
   inset: 0;
@@ -66,15 +87,6 @@ html, body {
   left: 15%;
 }
 
-.orb-3 {
-  width: 350px;
-  height: 350px;
-  background: var(--purple-glow);
-  top: 40%;
-  right: 10%;
-  opacity: 0.2;
-}
-
 /* SINGLE VIEWPORT CONTAINER (100VH CENTERED) */
 .single-viewport-container {
   position: relative;
@@ -97,15 +109,15 @@ html, body {
 }
 
 .card-glass-panel {
-  background: linear-gradient(135deg, rgba(17, 26, 46, 0.85) 0%, rgba(10, 15, 29, 0.92) 100%);
+  background: linear-gradient(135deg, rgba(13, 21, 38, 0.88) 0%, rgba(7, 11, 20, 0.94) 100%);
   border: 1px solid var(--card-border);
   border-radius: 32px;
   padding: 44px 36px;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   box-shadow: 
-    0 32px 90px rgba(0, 0, 0, 0.6),
-    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 32px 90px rgba(0, 0, 0, 0.7),
+    0 8px 24px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.18),
     inset 0 -1px 0 rgba(0, 0, 0, 0.5);
   display: flex;
