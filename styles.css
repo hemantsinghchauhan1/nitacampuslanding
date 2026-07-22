@@ -52,6 +52,19 @@ body {
   text-align: center;
 }
 
+#site-logo {
+  position: absolute;
+  top: -36px;
+  left: 32px;
+  width: 92px;
+  height: auto;
+  border-radius: 12px;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 10px 30px rgba(3,9,19,0.5);
+  z-index: 2;
+}
+
 .eyebrow {
   margin: 0 0 0.75rem;
   text-transform: uppercase;
