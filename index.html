@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NITA Campus Countdown</title>
+    <meta
+      name="description"
+      content="A modern countdown landing page for the NITA campus event."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <audio id="bg-audio" autoplay loop muted>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+    </audio>
+
+    <main class="hero">
+      <div class="overlay"></div>
+      <section class="content">
+        <p class="eyebrow">NITA Campus</p>
+        <h1>Countdown to the next big step</h1>
+        <p class="subtitle">
+          We’re getting ready for an exciting campus moment. The countdown is on — only 11 days remain.
+        </p>
+
+        <div class="countdown" aria-label="Countdown timer">
+          <div class="time-box">
+            <span id="days">00</span>
+            <label>Days</label>
+          </div>
+          <div class="time-box">
+            <span id="hours">00</span>
+            <label>Hours</label>
+          </div>
+          <div class="time-box">
+            <span id="minutes">00</span>
+            <label>Minutes</label>
+          </div>
+          <div class="time-box">
+            <span id="seconds">00</span>
+            <label>Seconds</label>
+          </div>
+        </div>
+
+        <div class="cta">Countdown is live</div>
+
+        <button id="audio-toggle" class="audio-toggle" aria-pressed="false" aria-label="Toggle background audio">🔈</button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
