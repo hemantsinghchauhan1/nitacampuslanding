@@ -157,11 +157,32 @@
     document.addEventListener(eventType, handleUserGesture, { passive: true })
   })
 
-  // FORM SUBMISSION HANDLING -> SENDS EMAIL NOTIFICATION TO snigdhasarkarsnigi@gmail.com
+  // TAB SWITCHING LOGIC
+  const tabBtnNotify = document.getElementById('tab-btn-notify')
+  const tabBtnFeature = document.getElementById('tab-btn-feature')
   const notifyForm = document.getElementById('notify-form')
+  const featureForm = document.getElementById('feature-form')
+  const notifyMsg = document.getElementById('notify-msg')
+
+  if (tabBtnNotify && tabBtnFeature && notifyForm && featureForm) {
+    tabBtnNotify.addEventListener('click', () => {
+      tabBtnNotify.classList.add('active')
+      tabBtnFeature.classList.remove('active')
+      notifyForm.classList.add('active')
+      featureForm.classList.remove('active')
+    })
+
+    tabBtnFeature.addEventListener('click', () => {
+      tabBtnFeature.classList.add('active')
+      tabBtnNotify.classList.remove('active')
+      featureForm.classList.add('active')
+      notifyForm.classList.remove('active')
+    })
+  }
+
+  // 1. NOTIFY FORM SUBMISSION -> SENDS EMAIL TO snigdhasarkarsnigi@gmail.com
   const notifyEmail = document.getElementById('notify-email')
   const notifyBtn = document.getElementById('notify-submit-btn')
-  const notifyMsg = document.getElementById('notify-msg')
 
   if (notifyForm) {
     notifyForm.addEventListener('submit', async (e) => {
@@ -188,12 +209,55 @@
             _template: 'table'
           })
         })
-      } catch (err) {
-        // Fallback smooth behavior
-      }
+      } catch (err) {}
 
       notifyForm.style.display = 'none'
+      if (featureForm) featureForm.style.display = 'none'
       if (notifyMsg) {
+        notifyMsg.textContent = "✨ Email saved! We will notify you on launch day."
+        notifyMsg.style.display = 'block'
+      }
+    })
+  }
+
+  // 2. FEATURE REQUEST FORM SUBMISSION -> SENDS EMAIL TO snigdhasarkarsnigi@gmail.com
+  const featureEmail = document.getElementById('feature-email')
+  const featureText = document.getElementById('feature-text')
+  const featureBtn = document.getElementById('feature-submit-btn')
+
+  if (featureForm) {
+    featureForm.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const emailVal = featureEmail ? featureEmail.value.trim() : ''
+      const textVal = featureText ? featureText.value.trim() : ''
+      if (!emailVal || !textVal) return
+
+      if (featureBtn) {
+        featureBtn.disabled = true
+        const btnText = featureBtn.querySelector('span')
+        if (btnText) btnText.textContent = 'Sending Features...'
+      }
+
+      try {
+        await fetch('https://formsubmit.co/ajax/snigdhasarkarsnigi@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            user_email: emailVal,
+            requested_features: textVal,
+            _subject: '💡 New NITACAMPUS Feature Suggestion from Website!',
+            _template: 'table'
+          })
+        })
+      } catch (err) {}
+
+      if (notifyForm) notifyForm.style.display = 'none'
+      featureForm.style.display = 'none'
+      if (notifyMsg) {
+        notifyMsg.textContent = "🚀 Feature request submitted! Sent to team."
         notifyMsg.style.display = 'block'
       }
     })

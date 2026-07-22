@@ -116,18 +116,41 @@
             </div>
           </div>
 
-          <!-- NOTIFY FORM (SUBMITS TO snigdhasarkarsnigi@gmail.com) -->
-          <form id="notify-form" class="notify-form">
-            <input type="email" id="notify-email" name="email" placeholder="Enter your email for launch access..." required class="notify-input" />
-            <button type="submit" id="notify-submit-btn" class="notify-btn">
-              <span>NOTIFY ME</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </button>
-          </form>
-          <div id="notify-msg" class="notify-success-msg" style="display: none;">
-            ✨ Subscribed! You will receive launch access updates.
+          <!-- DUAL INTERACTION TABS: [GET NOTIFIED] | [REQUEST FEATURES] -->
+          <div class="form-tabs-container">
+            <div class="form-tabs-header">
+              <button id="tab-btn-notify" class="tab-btn active">📩 Get Notified</button>
+              <button id="tab-btn-feature" class="tab-btn">💡 Request Features</button>
+            </div>
+
+            <!-- TAB 1: NOTIFY ME FORM -->
+            <form id="notify-form" class="notify-form tab-content active">
+              <input type="email" id="notify-email" name="email" placeholder="Enter your email address..." required class="notify-input" />
+              <button type="submit" id="notify-submit-btn" class="notify-btn">
+                <span>NOTIFY ME</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </form>
+
+            <!-- TAB 2: REQUEST FEATURES FORM (EMAILS snigdhasarkarsnigi@gmail.com) -->
+            <form id="feature-form" class="feature-form tab-content">
+              <div class="feature-form-inner">
+                <input type="email" id="feature-email" name="email" placeholder="Your email address..." required class="feature-input" />
+                <textarea id="feature-text" name="requested_features" placeholder="What features do you want in NITACAMPUS? (e.g., PYQs, Attendance Tracker, Canteen ordering...)" required class="feature-textarea" rows="2"></textarea>
+                <button type="submit" id="feature-submit-btn" class="feature-btn">
+                  <span>SEND FEATURE REQUEST</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                  </svg>
+                </button>
+              </div>
+            </form>
+
+            <div id="notify-msg" class="notify-success-msg" style="display: none;">
+              ✨ Submission sent! We will process your request for launch.
+            </div>
           </div>
 
           <!-- BOTTOM STATUS & SOCIAL ROW -->
