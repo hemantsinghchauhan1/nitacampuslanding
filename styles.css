@@ -5,6 +5,7 @@
   --primary-blue: #1A56DB;
   --cyan-accent: #38BDF8;
   --purple-glow: #7C3AED;
+  --insta-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
   --text-main: #F8FAFC;
   --text-muted: #94A3B8;
 }
@@ -112,7 +113,7 @@ html, body {
   background: linear-gradient(135deg, rgba(13, 21, 38, 0.88) 0%, rgba(7, 11, 20, 0.94) 100%);
   border: 1px solid var(--card-border);
   border-radius: 32px;
-  padding: 44px 36px;
+  padding: 40px 36px;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   box-shadow: 
@@ -127,6 +128,15 @@ html, body {
   transform-style: preserve-3d;
 }
 
+.top-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .top-tag {
   display: inline-flex;
   align-items: center;
@@ -139,8 +149,29 @@ html, body {
   border: 1px solid rgba(56, 189, 248, 0.22);
   padding: 6px 16px;
   border-radius: 999px;
-  margin-bottom: 22px;
   box-shadow: 0 4px 12px rgba(56, 189, 248, 0.1);
+}
+
+.insta-link-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-decoration: none;
+  background: rgba(225, 48, 108, 0.12);
+  border: 1px solid rgba(225, 48, 108, 0.3);
+  padding: 6px 14px;
+  border-radius: 999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.insta-link-badge:hover {
+  transform: translateY(-2px);
+  background: rgba(225, 48, 108, 0.22);
+  box-shadow: 0 4px 16px rgba(225, 48, 108, 0.3);
+  color: #FF758C;
 }
 
 .pulse-dot {
@@ -162,7 +193,7 @@ html, body {
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   color: #FFFFFF;
 }
 
@@ -180,7 +211,7 @@ html, body {
   justify-content: center;
   gap: 16px;
   perspective: 1000px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .card-unit {
@@ -292,7 +323,7 @@ html, body {
 .progress-container {
   width: 100%;
   max-width: 380px;
-  margin-bottom: 30px;
+  margin-bottom: 26px;
 }
 
 .progress-meta {
@@ -328,7 +359,7 @@ html, body {
   gap: 8px;
   width: 100%;
   max-width: 440px;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
   background: rgba(15, 23, 42, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.14);
   padding: 6px 6px 6px 18px;
@@ -372,12 +403,20 @@ html, body {
   box-shadow: 0 8px 24px rgba(56, 189, 248, 0.4);
 }
 
-/* STATUS PILL */
+/* BOTTOM STATUS ROW */
+.bottom-status-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .status-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 20px;
+  padding: 8px 18px;
   border-radius: 999px;
   background: rgba(56, 189, 248, 0.06);
   border: 1px solid rgba(56, 189, 248, 0.15);
@@ -392,6 +431,27 @@ html, body {
   border-radius: 50%;
   background: var(--cyan-accent);
   box-shadow: 0 0 8px var(--cyan-accent);
+}
+
+.footer-insta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(225, 48, 108, 0.08);
+  border: 1px solid rgba(225, 48, 108, 0.25);
+  font-size: 12px;
+  font-weight: 600;
+  color: #FF758C;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.footer-insta-link:hover {
+  transform: translateY(-2px);
+  background: rgba(225, 48, 108, 0.18);
+  box-shadow: 0 4px 14px rgba(225, 48, 108, 0.25);
 }
 
 /* FLOATING AUDIO FAB */
@@ -464,14 +524,14 @@ html, body {
 
 @media (max-height: 700px) {
   .card-glass-panel {
-    padding: 28px 24px;
+    padding: 24px 20px;
   }
   .main-headline {
-    margin-bottom: 20px;
-    font-size: 36px;
+    margin-bottom: 18px;
+    font-size: 34px;
   }
   .countdown-grid {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
   .card-3d {
     width: 80px;
@@ -486,10 +546,10 @@ html, body {
     padding-bottom: 18px;
   }
   .progress-container {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
   .notify-form {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 }
 
