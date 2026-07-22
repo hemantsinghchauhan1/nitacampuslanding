@@ -1,89 +1,85 @@
-const targetDate = new Date();
-targetDate.setDate(targetDate.getDate() + 11);
-targetDate.setHours(23, 59, 59, 999);
+(function () {
+  const LAUNCH_DATE = new Date('2026-08-12T00:00:00+05:30')
+  const TOTAL_MS = 21 * 24 * 60 * 60 * 1000
 
-const elements = {
-  days: document.getElementById('days'),
-  hours: document.getElementById('hours'),
-  minutes: document.getElementById('minutes'),
-  seconds: document.getElementById('seconds')
-};
+  const daysEl = document.getElementById('days-digit')
+  const hoursEl = document.getElementById('hours-digit')
+  const minsEl = document.getElementById('mins-digit')
+  const secsEl = document.getElementById('secs-digit')
+  const progressFill = document.getElementById('progress-fill')
+  const pctLabel = document.getElementById('pct-label')
 
-function updateCountdown() {
-  const now = new Date();
-  const diff = targetDate - now;
+  let prevDays = null
+  let prevHours = null
+  let prevMins = null
+  let prevSecs = null
 
-  if (diff <= 0) {
-    Object.values(elements).forEach((el) => {
-      if (el) el.textContent = '00';
-    });
-    return;
+  function formatNum(num) {
+    return String(num).padStart(2, '0')
   }
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
-  if (elements.days) elements.days.textContent = String(days).padStart(2, '0');
-  if (elements.hours) elements.hours.textContent = String(hours).padStart(2, '0');
-  if (elements.minutes) elements.minutes.textContent = String(minutes).padStart(2, '0');
-  if (elements.seconds) elements.seconds.textContent = String(seconds).padStart(2, '0');
-}
-
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-const audio = document.getElementById('bg-audio');
-const audioToggle = document.getElementById('audio-toggle');
-const volumeSlider = document.getElementById('volume-slider');
-
-if (audio) {
-  // Start muted for autoplay policy; play silently so audio is primed.
-  audio.volume = 0.25;
-  audio.muted = true;
-  audio.play().catch(() => {});
-
-  function setIcon() {
-    if (!audioToggle) return;
-    if (audio.muted) audioToggle.textContent = '🔇';
-    else audioToggle.textContent = audio.paused ? '🔊' : '⏸';
-    audioToggle.setAttribute('aria-pressed', String(!audio.muted && !audio.paused));
+  function triggerFlip(el) {
+    if (!el) return
+    el.classList.remove('flip')
+    void el.offsetWidth // force reflow
+    el.classList.add('flip')
   }
 
-  // Toggle play / pause / mute
-  if (audioToggle) {
-    setIcon();
-    audioToggle.addEventListener('click', () => {
-      if (audio.muted) {
-        audio.muted = false;
-        audio.play().catch(() => {});
-      } else if (audio.paused) {
-        audio.play().catch(() => {});
-      } else {
-        audio.pause();
+  function tick() {
+    const now = Date.now()
+    const diff = Math.max(0, LAUNCH_DATE.getTime() - now)
+
+    const d = Math.floor(diff / 86400000)
+    const h = Math.floor((diff % 86400000) / 3600000)
+    const m = Math.floor((diff % 3600000) / 60000)
+    const s = Math.floor((diff % 60000) / 1000)
+    const pct = Math.min(100, Math.max(0, Math.round((1 - diff / TOTAL_MS) * 100)))
+
+    if (daysEl) {
+      const formattedD = formatNum(d)
+      if (prevDays !== null && prevDays !== formattedD) {
+        triggerFlip(daysEl)
       }
-      setIcon();
-    });
+      daysEl.textContent = formattedD
+      prevDays = formattedD
+    }
+
+    if (hoursEl) {
+      const formattedH = formatNum(h)
+      if (prevHours !== null && prevHours !== formattedH) {
+        triggerFlip(hoursEl)
+      }
+      hoursEl.textContent = formattedH
+      prevHours = formattedH
+    }
+
+    if (minsEl) {
+      const formattedM = formatNum(m)
+      if (prevMins !== null && prevMins !== formattedM) {
+        triggerFlip(minsEl)
+      }
+      minsEl.textContent = formattedM
+      prevMins = formattedM
+    }
+
+    if (secsEl) {
+      const formattedS = formatNum(s)
+      if (prevSecs !== null && prevSecs !== formattedS) {
+        triggerFlip(secsEl)
+      }
+      secsEl.textContent = formattedS
+      prevSecs = formattedS
+    }
+
+    if (progressFill) {
+      progressFill.style.width = `${pct}%`
+    }
+
+    if (pctLabel) {
+      pctLabel.textContent = `${pct}% complete`
+    }
   }
 
-  // Volume slider: unmute and set volume when adjusted
-  if (volumeSlider) {
-    volumeSlider.value = String(Math.round(audio.volume * 100));
-    volumeSlider.addEventListener('input', (e) => {
-      const v = Number(e.target.value) / 100;
-      audio.volume = v;
-      if (audio.muted && v > 0) audio.muted = false;
-      if (!audio.muted && v === 0) audio.muted = true;
-      setIcon();
-    });
-  }
-
-  // Keep icon state in sync with audio events
-  audio.addEventListener('play', setIcon);
-  audio.addEventListener('pause', setIcon);
-  audio.addEventListener('volumechange', () => {
-    if (volumeSlider) volumeSlider.value = String(Math.round(audio.volume * 100));
-    setIcon();
-  });
-}
+  tick()
+  setInterval(tick, 1000)
+})()
