@@ -116,16 +116,19 @@
             </div>
           </div>
 
-          <!-- NOTIFY FORM -->
-          <form class="notify-form" onsubmit="event.preventDefault(); alert('Subscribed for launch updates!');">
-            <input type="email" placeholder="Enter your email for launch access..." required class="notify-input" />
-            <button type="submit" class="notify-btn">
+          <!-- NOTIFY FORM (SUBMITS TO snigdhasarkarsnigi@gmail.com) -->
+          <form id="notify-form" class="notify-form">
+            <input type="email" id="notify-email" name="email" placeholder="Enter your email for launch access..." required class="notify-input" />
+            <button type="submit" id="notify-submit-btn" class="notify-btn">
               <span>NOTIFY ME</span>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
           </form>
+          <div id="notify-msg" class="notify-success-msg" style="display: none;">
+            ✨ Subscribed! You will receive launch access updates.
+          </div>
 
           <!-- BOTTOM STATUS & SOCIAL ROW -->
           <div class="bottom-status-row">

@@ -353,7 +353,7 @@ html, body {
   transition: width 0.8s ease;
 }
 
-/* NOTIFY FORM */
+/* NOTIFY FORM & SUCCESS TOAST */
 .notify-form {
   display: flex;
   gap: 8px;
@@ -401,6 +401,24 @@ html, body {
 .notify-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(56, 189, 248, 0.4);
+}
+
+.notify-success-msg {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: var(--cyan-accent);
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.15);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* BOTTOM STATUS ROW */

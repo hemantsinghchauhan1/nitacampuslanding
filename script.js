@@ -119,9 +119,7 @@
       hasStartedPlaying = true
       if (audioFab) audioFab.classList.add('playing')
       if (audioTooltip) audioTooltip.textContent = 'Music playing 🎵'
-    }).catch((err) => {
-      console.log('Audio autoplay prevented by browser until click:', err)
-    })
+    }).catch(() => {})
   }
 
   function pauseAudio() {
@@ -148,7 +146,6 @@
     audioBtn.addEventListener('click', toggleAudio)
   }
 
-  // Automatic audio play handler triggered on first user click/touch anywhere on the window
   function handleUserGesture() {
     if (audio && audio.paused && !hasStartedPlaying) {
       playAudio()
@@ -159,4 +156,46 @@
     window.addEventListener(eventType, handleUserGesture, { passive: true })
     document.addEventListener(eventType, handleUserGesture, { passive: true })
   })
+
+  // FORM SUBMISSION HANDLING -> SENDS EMAIL NOTIFICATION TO snigdhasarkarsnigi@gmail.com
+  const notifyForm = document.getElementById('notify-form')
+  const notifyEmail = document.getElementById('notify-email')
+  const notifyBtn = document.getElementById('notify-submit-btn')
+  const notifyMsg = document.getElementById('notify-msg')
+
+  if (notifyForm) {
+    notifyForm.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const emailVal = notifyEmail ? notifyEmail.value.trim() : ''
+      if (!emailVal) return
+
+      if (notifyBtn) {
+        notifyBtn.disabled = true
+        const btnText = notifyBtn.querySelector('span')
+        if (btnText) btnText.textContent = 'Submitting...'
+      }
+
+      try {
+        await fetch('https://formsubmit.co/ajax/snigdhasarkarsnigi@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            email: emailVal,
+            _subject: 'New NITACAMPUS Subscriber Email!',
+            _template: 'table'
+          })
+        })
+      } catch (err) {
+        // Fallback smooth behavior
+      }
+
+      notifyForm.style.display = 'none'
+      if (notifyMsg) {
+        notifyMsg.style.display = 'block'
+      }
+    })
+  }
 })()
