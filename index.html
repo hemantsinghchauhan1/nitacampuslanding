@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NITACAMPUS - Official 3D Launch Countdown</title>
+    <title>NITACAMPUS - Live Launch</title>
     <meta
       name="description"
       content="Official 21-day live launch countdown for NITACAMPUS - NIT Agartala Campus Super App."
@@ -22,41 +22,28 @@
       <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
     </audio>
 
-    <!-- 3D GRID BACKGROUND PATTERN -->
+    <!-- 3D BACKGROUND GRID & GLOW ORBS -->
     <div class="bg-grid-overlay"></div>
     <div class="glow-orb orb-1"></div>
     <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
 
-    <main class="page-container">
-      <!-- HEADER / BRANDING -->
-      <header class="header">
-        <div class="brand-badge">
-          <picture>
-            <source srcset="assets/logo.svg" type="image/svg+xml" />
-            <img id="site-logo" src="assets/logo.png" alt="NITACAMPUS Official Logo" />
-          </picture>
-          <span class="brand-name">NITA<span class="brand-accent">CAMPUS</span></span>
-        </div>
-      </header>
-
-      <!-- HERO / MAIN COUNTDOWN CARD CONTAINER -->
+    <!-- SINGLE-SCREEN 100VH CONTAINER -->
+    <main class="single-viewport-container">
       <section class="main-card-3d">
         <div class="card-glass-panel">
-          <!-- TOP EYEBROW -->
+          <!-- TOP EYEBROW BADGE -->
           <div class="top-tag">
             <span class="pulse-dot"></span>
-            <span>21-DAY LIVE COUNTDOWN</span>
+            <span>NITACAMPUS • 21-DAY LIVE LAUNCH</span>
           </div>
 
           <!-- HEADLINE -->
           <h1 class="main-headline">
-            Going <span class="text-gradient">live</span> soon
+            Going <span class="text-gradient">live</span> in
           </h1>
-          <p class="main-subtext">
-            We’re building the official campus super-app for NIT Agartala students. The countdown is officially live.
-          </p>
 
-          <!-- 3D COUNTDOWN CARDS -->
+          <!-- 3D COUNTDOWN CARDS GRID -->
           <div class="countdown-grid">
             <!-- DAYS -->
             <div class="card-unit">
@@ -108,7 +95,7 @@
           <!-- PROGRESS BAR SECTION -->
           <div class="progress-container">
             <div class="progress-meta">
-              <span>Launch Progress</span>
+              <span>0% complete</span>
               <span id="pct-label">0% complete</span>
             </div>
             <div class="progress-track">
@@ -116,12 +103,12 @@
             </div>
           </div>
 
-          <!-- SUBSCRIBE / NOTIFY FORM -->
+          <!-- NOTIFY FORM -->
           <form class="notify-form" onsubmit="event.preventDefault(); alert('Subscribed for launch updates!');">
-            <input type="email" placeholder="Enter your college email address..." required class="notify-input" />
+            <input type="email" placeholder="Enter your email for launch access..." required class="notify-input" />
             <button type="submit" class="notify-btn">
               <span>NOTIFY ME</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
@@ -134,25 +121,10 @@
           </div>
         </div>
       </section>
-
-      <!-- ABOUT SECTION -->
-      <section class="about-card-3d">
-        <div class="about-glass">
-          <h2>About NITACAMPUS</h2>
-          <p>
-            NITACAMPUS is the upcoming unified digital ecosystem for National Institute of Technology Agartala. Designed to seamlessly connect academics, campus events, hostel management, marketplace, and peer networking.
-          </p>
-        </div>
-      </section>
-
-      <!-- FOOTER -->
-      <footer class="footer">
-        <p>© 2026 NITACAMPUS. All rights reserved.</p>
-      </footer>
     </main>
 
     <!-- FLOATING 3D AUDIO CONTROL FAB -->
-    <div class="audio-fab" id="audio-fab" title="Click anywhere to play background audio">
+    <div class="audio-fab" id="audio-fab" title="Click anywhere to play background music">
       <button id="audio-toggle-btn" class="audio-btn" aria-label="Toggle Audio">
         <span class="music-icon" id="music-icon">🎵</span>
         <div class="sound-wave" id="sound-wave">
