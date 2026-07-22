@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>NITACAMPUS - Live Launch</title>
     <meta
       name="description"
@@ -29,7 +29,7 @@
     <div class="glow-orb orb-1"></div>
     <div class="glow-orb orb-2"></div>
 
-    <!-- SINGLE-SCREEN 100VH CONTAINER -->
+    <!-- SINGLE-SCREEN VIEWPORT CONTAINER -->
     <main class="single-viewport-container">
       <section class="main-card-3d">
         <div class="card-glass-panel">
@@ -116,32 +116,16 @@
             </div>
           </div>
 
-          <!-- DUAL INTERACTION TABS: [GET NOTIFIED] | [REQUEST FEATURES] -->
-          <div class="form-tabs-container">
-            <div class="form-tabs-header">
-              <button id="tab-btn-notify" class="tab-btn active">📩 Get Notified</button>
-              <button id="tab-btn-feature" class="tab-btn">💡 Request Features</button>
-            </div>
-
-            <!-- TAB 1: NOTIFY ME FORM -->
-            <form id="notify-form" class="notify-form tab-content active">
-              <input type="email" id="notify-email" name="email" placeholder="Enter your email address..." required class="notify-input" />
-              <button type="submit" id="notify-submit-btn" class="notify-btn">
-                <span>NOTIFY ME</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </form>
-
-            <!-- TAB 2: REQUEST FEATURES FORM (EMAILS snigdhasarkarsnigi@gmail.com) -->
-            <form id="feature-form" class="feature-form tab-content">
+          <!-- FEATURE REQUEST FORM ONLY (EMAILS snigdhasarkarsnigi@gmail.com) -->
+          <div class="feature-section-wrapper">
+            <h3 class="feature-section-title">💡 What features do you want in NITACAMPUS?</h3>
+            <form id="feature-form" class="feature-form">
               <div class="feature-form-inner">
                 <input type="email" id="feature-email" name="email" placeholder="Your email address..." required class="feature-input" />
-                <textarea id="feature-text" name="requested_features" placeholder="What features do you want in NITACAMPUS? (e.g., PYQs, Attendance Tracker, Canteen ordering...)" required class="feature-textarea" rows="2"></textarea>
+                <textarea id="feature-text" name="requested_features" placeholder="Tell us which features you want built (PYQs, Attendance, Canteen, Events...)" required class="feature-textarea" rows="2"></textarea>
                 <button type="submit" id="feature-submit-btn" class="feature-btn">
-                  <span>SEND FEATURE REQUEST</span>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <span>SUBMIT FEATURE REQUEST</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
                   </svg>
                 </button>
@@ -149,7 +133,7 @@
             </form>
 
             <div id="notify-msg" class="notify-success-msg" style="display: none;">
-              ✨ Submission sent! We will process your request for launch.
+              ✨ Feature request submitted! Sent to team.
             </div>
           </div>
 
@@ -161,7 +145,7 @@
             </div>
 
             <a href="https://instagram.com/nita_campus" target="_blank" rel="noopener noreferrer" class="footer-insta-link">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>

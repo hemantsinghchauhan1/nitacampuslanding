@@ -96,7 +96,7 @@
       const rotateX = (centerY - y) / 4
       const rotateY = (x - centerX) / 4
 
-      card.style.transform = `translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`
+      card.style.transform = `translateY(-4px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`
     })
 
     card.addEventListener('mouseleave', () => {
@@ -157,73 +157,12 @@
     document.addEventListener(eventType, handleUserGesture, { passive: true })
   })
 
-  // TAB SWITCHING LOGIC
-  const tabBtnNotify = document.getElementById('tab-btn-notify')
-  const tabBtnFeature = document.getElementById('tab-btn-feature')
-  const notifyForm = document.getElementById('notify-form')
+  // FEATURE REQUEST FORM SUBMISSION -> SENDS EMAIL TO snigdhasarkarsnigi@gmail.com
   const featureForm = document.getElementById('feature-form')
-  const notifyMsg = document.getElementById('notify-msg')
-
-  if (tabBtnNotify && tabBtnFeature && notifyForm && featureForm) {
-    tabBtnNotify.addEventListener('click', () => {
-      tabBtnNotify.classList.add('active')
-      tabBtnFeature.classList.remove('active')
-      notifyForm.classList.add('active')
-      featureForm.classList.remove('active')
-    })
-
-    tabBtnFeature.addEventListener('click', () => {
-      tabBtnFeature.classList.add('active')
-      tabBtnNotify.classList.remove('active')
-      featureForm.classList.add('active')
-      notifyForm.classList.remove('active')
-    })
-  }
-
-  // 1. NOTIFY FORM SUBMISSION -> SENDS EMAIL TO snigdhasarkarsnigi@gmail.com
-  const notifyEmail = document.getElementById('notify-email')
-  const notifyBtn = document.getElementById('notify-submit-btn')
-
-  if (notifyForm) {
-    notifyForm.addEventListener('submit', async (e) => {
-      e.preventDefault()
-      const emailVal = notifyEmail ? notifyEmail.value.trim() : ''
-      if (!emailVal) return
-
-      if (notifyBtn) {
-        notifyBtn.disabled = true
-        const btnText = notifyBtn.querySelector('span')
-        if (btnText) btnText.textContent = 'Submitting...'
-      }
-
-      try {
-        await fetch('https://formsubmit.co/ajax/snigdhasarkarsnigi@gmail.com', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            email: emailVal,
-            _subject: 'New NITACAMPUS Subscriber Email!',
-            _template: 'table'
-          })
-        })
-      } catch (err) {}
-
-      notifyForm.style.display = 'none'
-      if (featureForm) featureForm.style.display = 'none'
-      if (notifyMsg) {
-        notifyMsg.textContent = "✨ Email saved! We will notify you on launch day."
-        notifyMsg.style.display = 'block'
-      }
-    })
-  }
-
-  // 2. FEATURE REQUEST FORM SUBMISSION -> SENDS EMAIL TO snigdhasarkarsnigi@gmail.com
   const featureEmail = document.getElementById('feature-email')
   const featureText = document.getElementById('feature-text')
   const featureBtn = document.getElementById('feature-submit-btn')
+  const notifyMsg = document.getElementById('notify-msg')
 
   if (featureForm) {
     featureForm.addEventListener('submit', async (e) => {
@@ -235,7 +174,7 @@
       if (featureBtn) {
         featureBtn.disabled = true
         const btnText = featureBtn.querySelector('span')
-        if (btnText) btnText.textContent = 'Sending Features...'
+        if (btnText) btnText.textContent = 'Submitting Request...'
       }
 
       try {
@@ -254,10 +193,9 @@
         })
       } catch (err) {}
 
-      if (notifyForm) notifyForm.style.display = 'none'
       featureForm.style.display = 'none'
       if (notifyMsg) {
-        notifyMsg.textContent = "🚀 Feature request submitted! Sent to team."
+        notifyMsg.textContent = "🚀 Feature request submitted! Sent to snigdhasarkarsnigi@gmail.com"
         notifyMsg.style.display = 'block'
       }
     })
