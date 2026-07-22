@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NITACAMPUS - 3D Live Launch Countdown</title>
+    <title>NITACAMPUS - Official 3D Launch Countdown</title>
     <meta
       name="description"
-      content="Official 21-day live 3D launch countdown for NITACAMPUS - NIT Agartala Campus Super App."
+      content="Official 21-day live launch countdown for NITACAMPUS - NIT Agartala Campus Super App."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -22,109 +22,137 @@
       <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
     </audio>
 
-    <!-- HERO SECTION -->
-    <section class="hero-section">
-      <div class="hero-content">
-        <picture>
-          <source srcset="assets/logo.svg" type="image/svg+xml" />
-          <img id="site-logo" src="assets/logo.png" alt="NITA Campus logo" />
-        </picture>
-        <h1 class="hero-title">Welcome to NITACAMPUS</h1>
-        <p class="hero-subtitle">
-          The official campus hub and super-app for NIT Agartala students.
-        </p>
-      </div>
-    </section>
+    <!-- 3D GRID BACKGROUND PATTERN -->
+    <div class="bg-grid-overlay"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
 
-    <!-- 3D LAUNCH COUNTDOWN SECTION -->
-    <section class="countdown-section" id="countdown-3d-section">
-      <div class="countdown-container">
-        <p class="top-label">NITACAMPUS</p>
-        <h2 class="headline">
-          Going <span class="live-highlight">live</span> in
-        </h2>
+    <main class="page-container">
+      <!-- HEADER / BRANDING -->
+      <header class="header">
+        <div class="brand-badge">
+          <picture>
+            <source srcset="assets/logo.svg" type="image/svg+xml" />
+            <img id="site-logo" src="assets/logo.png" alt="NITACAMPUS Official Logo" />
+          </picture>
+          <span class="brand-name">NITA<span class="brand-accent">CAMPUS</span></span>
+        </div>
+      </header>
 
-        <div class="countdown-wrapper">
-          <!-- DAYS CARD -->
-          <div class="card-container">
-            <div class="card 3d-card" data-tilt>
-              <div class="card-inner">
+      <!-- HERO / MAIN COUNTDOWN CARD CONTAINER -->
+      <section class="main-card-3d">
+        <div class="card-glass-panel">
+          <!-- TOP EYEBROW -->
+          <div class="top-tag">
+            <span class="pulse-dot"></span>
+            <span>21-DAY LIVE COUNTDOWN</span>
+          </div>
+
+          <!-- HEADLINE -->
+          <h1 class="main-headline">
+            Going <span class="text-gradient">live</span> soon
+          </h1>
+          <p class="main-subtext">
+            We’re building the official campus super-app for NIT Agartala students. The countdown is officially live.
+          </p>
+
+          <!-- 3D COUNTDOWN CARDS -->
+          <div class="countdown-grid">
+            <!-- DAYS -->
+            <div class="card-unit">
+              <div class="card-3d" data-tilt>
+                <div class="card-top-shade"></div>
                 <span id="days-digit" class="digit">00</span>
+                <div class="card-hover-glow"></div>
               </div>
+              <span class="unit-label">DAYS</span>
             </div>
-            <span class="card-label">Days</span>
-          </div>
 
-          <div class="separator">:</div>
+            <div class="colon-sep">:</div>
 
-          <!-- HOURS CARD -->
-          <div class="card-container">
-            <div class="card 3d-card" data-tilt>
-              <div class="card-inner">
+            <!-- HOURS -->
+            <div class="card-unit">
+              <div class="card-3d" data-tilt>
+                <div class="card-top-shade"></div>
                 <span id="hours-digit" class="digit">00</span>
+                <div class="card-hover-glow"></div>
               </div>
+              <span class="unit-label">HOURS</span>
             </div>
-            <span class="card-label">Hours</span>
-          </div>
 
-          <div class="separator">:</div>
+            <div class="colon-sep">:</div>
 
-          <!-- MINS CARD -->
-          <div class="card-container">
-            <div class="card 3d-card" data-tilt>
-              <div class="card-inner">
+            <!-- MINS -->
+            <div class="card-unit">
+              <div class="card-3d" data-tilt>
+                <div class="card-top-shade"></div>
                 <span id="mins-digit" class="digit">00</span>
+                <div class="card-hover-glow"></div>
               </div>
+              <span class="unit-label">MINUTES</span>
             </div>
-            <span class="card-label">Mins</span>
-          </div>
 
-          <div class="separator">:</div>
+            <div class="colon-sep">:</div>
 
-          <!-- SECS CARD -->
-          <div class="card-container">
-            <div class="card 3d-card" data-tilt>
-              <div class="card-inner">
+            <!-- SECS -->
+            <div class="card-unit">
+              <div class="card-3d" data-tilt>
+                <div class="card-top-shade"></div>
                 <span id="secs-digit" class="digit">00</span>
+                <div class="card-hover-glow"></div>
               </div>
+              <span class="unit-label">SECONDS</span>
             </div>
-            <span class="card-label">Secs</span>
+          </div>
+
+          <!-- PROGRESS BAR SECTION -->
+          <div class="progress-container">
+            <div class="progress-meta">
+              <span>Launch Progress</span>
+              <span id="pct-label">0% complete</span>
+            </div>
+            <div class="progress-track">
+              <div id="progress-fill" class="progress-fill"></div>
+            </div>
+          </div>
+
+          <!-- SUBSCRIBE / NOTIFY FORM -->
+          <form class="notify-form" onsubmit="event.preventDefault(); alert('Subscribed for launch updates!');">
+            <input type="email" placeholder="Enter your college email address..." required class="notify-input" />
+            <button type="submit" class="notify-btn">
+              <span>NOTIFY ME</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </form>
+
+          <!-- STATUS BADGE -->
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>Building in progress — NIT Agartala Campus App</span>
           </div>
         </div>
+      </section>
 
-        <!-- PROGRESS BAR -->
-        <div class="progress-section">
-          <div class="progress-labels">
-            <span>0% complete</span>
-            <span id="pct-label">0% complete</span>
-          </div>
-          <div class="progress-track">
-            <div id="progress-fill" class="progress-fill"></div>
-          </div>
+      <!-- ABOUT SECTION -->
+      <section class="about-card-3d">
+        <div class="about-glass">
+          <h2>About NITACAMPUS</h2>
+          <p>
+            NITACAMPUS is the upcoming unified digital ecosystem for National Institute of Technology Agartala. Designed to seamlessly connect academics, campus events, hostel management, marketplace, and peer networking.
+          </p>
         </div>
+      </section>
 
-        <!-- BADGE -->
-        <div class="badge">
-          <span class="pulsing-dot"></span>
-          <span class="badge-text">
-            Building in progress — NIT Agartala Campus App
-          </span>
-        </div>
-      </div>
-    </section>
+      <!-- FOOTER -->
+      <footer class="footer">
+        <p>© 2026 NITACAMPUS. All rights reserved.</p>
+      </footer>
+    </main>
 
-    <!-- ABOUT SECTION -->
-    <section class="about-section">
-      <div class="about-container">
-        <h2 class="about-title">About NITACAMPUS</h2>
-        <p class="about-text">
-          Empowering students with seamless access to course materials, campus updates, event management, and peer collaboration.
-        </p>
-      </div>
-    </section>
-
-    <!-- FLOATING 3D AUDIO CONTROL BUTTON -->
-    <div class="audio-fab" id="audio-fab" title="Click anywhere or click here to play audio">
+    <!-- FLOATING 3D AUDIO CONTROL FAB -->
+    <div class="audio-fab" id="audio-fab" title="Click anywhere to play background audio">
       <button id="audio-toggle-btn" class="audio-btn" aria-label="Toggle Audio">
         <span class="music-icon" id="music-icon">🎵</span>
         <div class="sound-wave" id="sound-wave">

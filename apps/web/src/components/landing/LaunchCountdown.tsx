@@ -55,28 +55,28 @@ export const LaunchCountdown: React.FC = () => {
 
       if (prevDays.current !== null && prevDays.current !== d && daysRef.current) {
         daysRef.current.classList.remove(styles.flip)
-        void daysRef.current.offsetWidth // force reflow
+        void daysRef.current.offsetWidth
         daysRef.current.classList.add(styles.flip)
       }
       prevDays.current = d
 
       if (prevHours.current !== null && prevHours.current !== h && hoursRef.current) {
         hoursRef.current.classList.remove(styles.flip)
-        void hoursRef.current.offsetWidth // force reflow
+        void hoursRef.current.offsetWidth
         hoursRef.current.classList.add(styles.flip)
       }
       prevHours.current = h
 
       if (prevMins.current !== null && prevMins.current !== m && minsRef.current) {
         minsRef.current.classList.remove(styles.flip)
-        void minsRef.current.offsetWidth // force reflow
+        void minsRef.current.offsetWidth
         minsRef.current.classList.add(styles.flip)
       }
       prevMins.current = m
 
       if (prevSecs.current !== null && prevSecs.current !== s && secsRef.current) {
         secsRef.current.classList.remove(styles.flip)
-        void secsRef.current.offsetWidth // force reflow
+        void secsRef.current.offsetWidth
         secsRef.current.classList.add(styles.flip)
       }
       prevSecs.current = s
@@ -135,9 +135,13 @@ export const LaunchCountdown: React.FC = () => {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <p className={styles.topLabel}>NITACAMPUS</p>
+        <div className={styles.topTag}>
+          <span className={styles.pulseDot} />
+          <span>21-DAY LIVE COUNTDOWN</span>
+        </div>
+
         <h2 className={styles.headline}>
-          Going <span className={styles.liveHighlight}>live</span> in
+          Going <span className={styles.liveHighlight}>live</span> soon
         </h2>
 
         <div className={styles.countdownWrapper}>
@@ -147,9 +151,11 @@ export const LaunchCountdown: React.FC = () => {
               onMouseMove={handleCardMouseMove}
               onMouseLeave={handleCardMouseLeave}
             >
+              <div className={styles.cardTopShade} />
               <span ref={daysRef} className={styles.digit}>
                 {formatNum(days)}
               </span>
+              <div className={styles.cardHoverGlow} />
             </div>
             <span className={styles.label}>Days</span>
           </div>
@@ -162,9 +168,11 @@ export const LaunchCountdown: React.FC = () => {
               onMouseMove={handleCardMouseMove}
               onMouseLeave={handleCardMouseLeave}
             >
+              <div className={styles.cardTopShade} />
               <span ref={hoursRef} className={styles.digit}>
                 {formatNum(hours)}
               </span>
+              <div className={styles.cardHoverGlow} />
             </div>
             <span className={styles.label}>Hours</span>
           </div>
@@ -177,9 +185,11 @@ export const LaunchCountdown: React.FC = () => {
               onMouseMove={handleCardMouseMove}
               onMouseLeave={handleCardMouseLeave}
             >
+              <div className={styles.cardTopShade} />
               <span ref={minsRef} className={styles.digit}>
                 {formatNum(mins)}
               </span>
+              <div className={styles.cardHoverGlow} />
             </div>
             <span className={styles.label}>Mins</span>
           </div>
@@ -192,9 +202,11 @@ export const LaunchCountdown: React.FC = () => {
               onMouseMove={handleCardMouseMove}
               onMouseLeave={handleCardMouseLeave}
             >
+              <div className={styles.cardTopShade} />
               <span ref={secsRef} className={styles.digit}>
                 {formatNum(secs)}
               </span>
+              <div className={styles.cardHoverGlow} />
             </div>
             <span className={styles.label}>Secs</span>
           </div>
@@ -221,7 +233,6 @@ export const LaunchCountdown: React.FC = () => {
         </div>
       </div>
 
-      {/* FLOATING 3D AUDIO BUTTON */}
       <div
         className={`${styles.audioFab} ${isPlaying ? styles.playing : ''}`}
         onClick={toggleAudio}
